@@ -238,56 +238,37 @@ body {
 
 /* --- Scene Switching Transitions --- */
 
-/* Base state for all tabs (hidden, slightly shifted down) */
+/* --- Unfucked Scene Switching Transitions --- */
+
+/* Base state for all tabs (hidden, shifted down) */
 .content-tab, .hero-scene {
-    display: none;
+    display: none !important; /* Force hide everything by default */
     opacity: 0;
     transform: translateY(15px);
-    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     width: 100%;
-    max-width: 800px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-/* Force the initial setup to show the hero scene on reload */
-.hero-scene {
-    display: flex; /* Kept flex for centering your card */
-}
-
-/* Active visible state triggered by JS */
-.content-tab.visible, .hero-scene.visible {
-    display: block;
+/* Home Scene Active State */
+.hero-scene.visible {
+    display: flex !important; /* Keep home beautifully centered */
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Make sure hero stays flex if active */
-.hero-scene.visible {
-    display: flex;
-}
-
-
-/* Info Tab Grid Layout */
-/* Core hidden state for the Info Tab */
-/* Core hidden state for the Info Tab */
-#info-tab {
-    display: none;
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    /* Pushes content near the top with elegant breathing room, clear of the menu button */
-    padding: 100px 20px 60px 20px; 
-}
-
-/* Applies grid layout instantly near the top of the viewport when active */
+/* Info Tab Active State (Cleans up the scroll bug and brings back your cards) */
 #info-tab.visible {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    align-content: start; /* Forces row generation to anchor at the top, not stretch */
+    opacity: 1;
+    transform: translateY(0);
+    padding-top: 120px; /* Elegant spacing below the menu button */
+    padding-bottom: 100px;
 }
+
 
 
 /* Premium Ultra-Glassmorphic Cards */
