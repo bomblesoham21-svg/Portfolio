@@ -269,52 +269,53 @@ body {
 /* Info Tab Grid Layout */
 /* Core hidden state for the Info Tab */
 #info-tab {
-    display: none;
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    width: 100%;
-    max-width: 1100px;
-    padding: 40px 20px;
+  position: fixed; /* anchor to viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* perfect centering */
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px 20px;
+  z-index: 999; /* ensure it sits above footer/copyright */
 }
 
-/* Corrected: Applies grid layout smoothly only when active */
 #info-tab.visible {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
 }
+
 
 
 /* Premium Ultra-Glassmorphic Cards */
 .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    
-    /* High-end micro border for the shiny edge reflection */
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    border-left: 1px solid rgba(255, 255, 255, 0.25);
-    
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    
-    /* Smooth 300ms fade-in transition setup */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.45),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              inset 0 -2px 6px rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease;
 }
 
-/* Micro-interaction on card hover */
 .glass-card:hover {
-    box-shadow: 0 40px 80px rgba(0, 255, 102, 0.08), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 45px 90px rgba(0, 255, 102, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px); /* subtle lift */
 }
+
 
 /* Sequential Staggered Fade-in when tab opens */
 #info-tab.visible .glass-card {
@@ -329,15 +330,17 @@ body {
 
 /* Card Typography Styling */
 .glass-card h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #fff;
-    letter-spacing: -0.01em;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .glass-card p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
 }
+
