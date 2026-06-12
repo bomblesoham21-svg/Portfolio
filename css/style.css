@@ -267,19 +267,24 @@ body {
 
 
 /* Info Tab Grid Layout */
+/* Core hidden state for the Info Tab */
 #info-tab {
-    display: none; /* Controlled by active switching */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     width: 100%;
     max-width: 1100px;
     padding: 40px 20px;
 }
 
-/* Force grid layout only when visible */
+/* Corrected: Applies grid layout smoothly only when active */
 #info-tab.visible {
     display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
+
 
 /* Premium Ultra-Glassmorphic Cards */
 .glass-card {
