@@ -324,3 +324,9 @@ body {
     line-height: 1.7;
     letter-spacing: 0.01em;
 }
+
+/* Makes cards visible when Info tab is opened */
+#info-tab.visible .glass-card {
+    opacity: 1;
+    transform: translateY(0);
+}
