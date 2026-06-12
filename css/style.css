@@ -146,3 +146,122 @@ body {
     letter-spacing: 0.05em;
 }
 
+
+/* Navigation Wrapper Positioning */
+.nav-wrapper {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Override previous .menu-btn positioning to keep it in the wrapper */
+.menu-btn {
+    position: relative;
+    top: auto;
+    right: auto;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Animated Hamburger to "X" morph when active */
+.menu-btn.active .hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.menu-btn.active .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.active .hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Premium Glassmorphic Dropdown List */
+.dropdown-menu {
+    position: absolute;
+    top: 55px; /* Sits directly below the button text */
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 0;
+    width: 160px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Open State for Dropdown */
+.dropdown-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+}
+
+/* Dropdown Menu Buttons */
+.menu-item {
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Neon Highlight for the Current Active Scene */
+.menu-item.active {
+    color: #00ff66;
+    font-weight: 600;
+    background: rgba(0, 255, 102, 0.05);
+}
+
+/* --- Scene Switching Transitions --- */
+
+/* Base state for all tabs (hidden, slightly shifted down) */
+.content-tab, .hero-scene {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Force the initial setup to show the hero scene on reload */
+.hero-scene {
+    display: flex; /* Kept flex for centering your card */
+}
+
+/* Active visible state triggered by JS */
+.content-tab.visible, .hero-scene.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Make sure hero stays flex if active */
+.hero-scene.visible {
+    display: flex;
+}
+
