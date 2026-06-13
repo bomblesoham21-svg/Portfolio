@@ -83,6 +83,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+
 
     /* Metallic multi-stop conic gradient ring */
     background: conic-gradient(
