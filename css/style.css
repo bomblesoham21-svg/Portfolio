@@ -258,8 +258,17 @@ body {
     transform: translateY(0);
 }
 
-/* Info Tab Active State (Cleans up the scroll bug and brings back your cards) */
-/* Info Tab Active State */
+
+/* --- Cleaned & Robust Info Tab Layout --- */
+
+#info-tab {
+    display: none !important;
+    opacity: 0;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 #info-tab.visible {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -268,40 +277,27 @@ body {
     padding-bottom: 100px;
 }
 
-/* Force Reset Card Opacity for the Animation Loop */
-#info-tab .glass-card {
+/* Glass Card Core & Hover */
+.glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 35px 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    
+    /* Animation Start State */
     opacity: 0;
     transform: translateY(25px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Everytime the tab becomes visible, execute this animation cycle */
-#info-tab.visible .glass-card {
-    animation: smoothReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Perfect Stagger Timing Loops */
-#info-tab.visible .glass-card:nth-child(1) { animation-delay: 0.05s; }
-#info-tab.visible .glass-card:nth-child(2) { animation-delay: 0.12s; }
-#info-tab.visible .glass-card:nth-child(3) { animation-delay: 0.19s; }
-#info-tab.visible .glass-card:nth-child(4) { animation-delay: 0.26s; }
-
-/* The Keyframe Engine */
-@keyframes smoothReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Hover Accent - Neon Green Edge Activation */
 .glass-card:hover {
     border-color: rgba(0, 255, 102, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 255, 102, 0.04),
-                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 255, 102, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 /* Typography Enhancements */
@@ -311,8 +307,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 18px;
-    
-    /* Subtle text gradient for the header titles */
     background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -325,45 +319,11 @@ body {
     letter-spacing: 0.01em;
 }
 
-/* Makes cards visible when Info tab is opened */
-#info-tab.visible .glass-card {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* --- Unfucked & Robust Info Tab Layout --- */
-
-/* Core hidden state for the Info Tab */
-#info-tab {
-    display: none !important;
-    opacity: 0;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-/* Stable Active State Trigger */
-#info-tab.visible {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding-top: 120px;
-    padding-bottom: 100px;
-}
-
-/* Force Reset Card Opacity for the Animation Loop */
-#info-tab .glass-card {
-    opacity: 0;
-    transform: translateY(25px);
-}
-
-/* Keyframe execution triggered instantly when .visible is present */
+/* Staggered Reveal Animation Trigger */
 #info-tab.visible .glass-card {
     animation: smoothReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Stagger Timing Loops */
 #info-tab.visible .glass-card:nth-child(1) { animation-delay: 0.05s; }
 #info-tab.visible .glass-card:nth-child(2) { animation-delay: 0.12s; }
 #info-tab.visible .glass-card:nth-child(3) { animation-delay: 0.19s; }
@@ -376,9 +336,8 @@ body {
     }
 }
 
-/* --- Premium Deep Midnight Theme (No Boring Glow) --- */
+/* Premium Deep Midnight Theme */
 body.info-theme .gradient-bg {
-    /* A rich, luxurious blend of obsidian black, deep charcoal, and royal midnight sapphire */
     background: linear-gradient(135deg, #020204, #080c1a, #030305, #0a1128, #000000);
     background-size: 400% 400%;
     animation: deepBlueMotion 14s ease infinite;
