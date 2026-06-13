@@ -260,7 +260,6 @@ body {
 
 
 /* ============================================================
-/* ============================================================
    PREMIUM INFO TAB — Portfolio (GitHub Pages)
    Upgraded Styling — Class/ID/Function names untouched
    ============================================================ */
@@ -271,7 +270,7 @@ body {
 /* --- Cleaned & Robust Info Tab Layout --- */
 
 #info-tab {
-    display: none !important;
+    /* .content-tab already handles display:none — no conflict here */
     opacity: 0;
     width: 100%;
     max-width: 1140px;
@@ -284,8 +283,10 @@ body {
     opacity: 1;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 28px;
-    padding-top: 130px;
-    padding-bottom: 110px;
+    /* viewport-container has padding:40px top already.
+       Nav button is fixed at top:30px — 80px clears it cleanly */
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 /* ============================================================
@@ -474,58 +475,32 @@ body {
 
 /* ============================================================
    Premium Deep Midnight Theme — Living Flowing Background
+   IMPORTANT: .gradient-bg stays position:fixed — we only
+   change its background & animation, never position/z-index
    ============================================================ */
 
 body.info-theme .gradient-bg {
-    position: relative;
-    overflow: hidden;
-    background: #01030d;
+    /* Override the green liquid gradient with deep midnight */
+    background:
+        radial-gradient(ellipse 55% 45% at 18% 20%, rgba(10, 30, 110, 0.9) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 75% 75%, rgba(0, 70, 25, 0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 42% 38% at 82% 15%, rgba(0, 25, 90, 0.65) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 42% at 22% 80%, rgba(0, 90, 30, 0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 28% at 60% 40%, rgba(0, 255, 102, 0.05) 0%, transparent 55%),
+        #01030d;
+    background-size: 300% 300%, 280% 280%, 260% 260%, 300% 300%, 200% 200%, auto;
+    /* Override the liquidMotion animation with our deep midnight one */
+    animation: deepMidnightFlow 20s ease-in-out infinite alternate;
     filter: contrast(1.1) brightness(0.78);
+    /* position, z-index, width, height — all untouched from base .gradient-bg */
 }
 
-/* Orb 1 — deep blue, top-left drift */
-body.info-theme .gradient-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse 55% 45% at 18% 20%, rgba(10, 30, 110, 0.72) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 35% at 75% 75%, rgba(0, 60, 20, 0.45) 0%, transparent 65%),
-        radial-gradient(ellipse 65% 55% at 50% 50%, rgba(3, 6, 22, 0.9) 0%, transparent 100%);
-    background-size: 200% 200%;
-    animation: orbDriftA 16s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Orb 2 — green accent, bottom-right drift, offset phase */
-body.info-theme .gradient-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse 42% 38% at 82% 15%, rgba(0, 25, 90, 0.5) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 42% at 22% 80%, rgba(0, 80, 28, 0.38) 0%, transparent 65%),
-        radial-gradient(ellipse 30% 28% at 60% 40%, rgba(0, 255, 102, 0.04) 0%, transparent 60%);
-    background-size: 220% 220%;
-    animation: orbDriftB 20s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes orbDriftA {
-    0%   { background-position: 0% 0%,   100% 100%, 50% 50%; }
-    25%  { background-position: 30% 15%,  65%  85%, 50% 50%; }
-    50%  { background-position: 60% 40%,  35%  55%, 50% 50%; }
-    75%  { background-position: 20% 70%,  80%  25%, 50% 50%; }
-    100% { background-position: 0% 100%, 100%   0%, 50% 50%; }
-}
-
-@keyframes orbDriftB {
-    0%   { background-position: 100% 0%,    0% 100%, 60% 40%; }
-    30%  { background-position:  70% 35%,  40%  60%, 45% 55%; }
-    60%  { background-position:  40% 70%,  75%  25%, 55% 45%; }
-    100% { background-position: 100% 100%,  0%   0%, 60% 40%; }
+@keyframes deepMidnightFlow {
+    0%   { background-position: 0% 0%,   100% 100%, 100% 0%,   0% 100%,  60% 40%, 0% 0%; }
+    25%  { background-position: 35% 20%,  60%  75%, 70%  30%,  30%  65%, 45% 55%, 0% 0%; }
+    50%  { background-position: 65% 50%,  30%  45%, 40%  65%,  70%  35%, 55% 45%, 0% 0%; }
+    75%  { background-position: 20% 80%,  75%  20%, 20%  80%,  80%  15%, 40% 60%, 0% 0%; }
+    100% { background-position: 0% 100%, 100%   0%, 100% 100%,  0%   0%, 60% 40%, 0% 0%; }
 }
 
 /* ============================================================
@@ -534,15 +509,17 @@ body.info-theme .gradient-bg::after {
 
 @media (prefers-reduced-motion: reduce) {
     .glass-card,
-    .glass-card::after,
-    body.info-theme .gradient-bg {
+    .glass-card::after {
         animation: none !important;
         transition: none !important;
+    }
+
+    body.info-theme .gradient-bg {
+        animation: none !important;
     }
 
     #info-tab.visible .glass-card {
         opacity: 1;
         transform: none;
-        filter: none;
     }
 }
