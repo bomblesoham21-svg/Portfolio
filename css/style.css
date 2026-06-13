@@ -262,6 +262,7 @@ body {
 /* Info Tab Active State */
 #info-tab.visible {
     display: grid !important;
+    opacity: 1;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     padding-top: 120px;
