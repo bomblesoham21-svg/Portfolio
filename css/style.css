@@ -67,27 +67,85 @@ body {
 }
 
 /* 4. 1:1 Profile Picture (Circle Aesthetic) */
+/* ============================================================
+   PFP — Premium Metallic Ring Frame
+   ============================================================ */
+
 .pfp-container {
-    width: 160px;
-    height: 160px;
+    /* Set a strict size so it doesn't take over the screen */
+    width: 150px;
+    height: 150px;
+    
+    /* Make the metallic ring perfectly circular */
     border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 24px auto;
-    box-shadow: 0 20px 50px rgba(0, 255, 102, 0.15); /* Subtle glow matching theme */
+    
+    /* Center the image properly inside the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    alignment: center;
+    /* Metallic multi-stop conic gradient ring */
+    background: conic-gradient(
+        from 135deg,
+        #b8b8b8 0deg,
+        #f5f5f5 40deg,
+        #ffffff 80deg,
+        #c0c0c0 120deg,
+        #888888 160deg,
+        #d4d4d4 200deg,
+        #ffffff 240deg,
+        #a0a0a0 280deg,
+        #e8e8e8 320deg,
+        #b8b8b8 360deg
+    );
+    padding: 4px; /* Slightly bumped up for a cleaner ring border */
+    
+    /* Outer glow — Swapped to a neon dark blue for a cleaner aesthetic */
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 0 18px rgba(200, 200, 200, 0.18),
+        0 0 40px rgba(0, 102, 255, 0.08),
+        0 20px 50px rgba(0, 102, 255, 0.12);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
 
+.pfp-container:hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.14),
+        0 0 24px rgba(220, 220, 220, 0.28),
+        0 0 55px rgba(0, 102, 255, 0.14),
+        0 24px 60px rgba(0, 102, 255, 0.18);
+    transform: scale(1.03);
+}
+
+/* Image must fill inside the ring cleanly */
 .pfp-img {
+    border-radius: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    alignment: center;
 }
 
-/* Bold Heading Type Font for Name */
+/* ============================================================
+   Profile Name — Premium Solid Type
+   ============================================================ */
+
 .profile-name {
+    font-family: 'Syne', 'DM Sans', system-ui, sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
+    /* Clean white-to-silver vertical fade — refined, not flashy */
+    background: linear-gradient(170deg, #ffffff 0%, rgba(210, 210, 210, 0.85) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 12px; /* Added slightly more space to breathe under the pfp */
 }
+
 
 /* 5. Top Right "Tabs" Hamburger Button */
 .menu-btn {
@@ -258,91 +316,277 @@ body {
     transform: translateY(0);
 }
 
-/* Info Tab Active State (Cleans up the scroll bug and brings back your cards) */
-/* Info Tab Active State */
+
+/* ============================================================
+   PREMIUM INFO TAB — Portfolio (GitHub Pages)
+   Upgraded Styling — Class/ID/Function names untouched
+   ============================================================ */
+
+/* Google Font — DM Sans (body text) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+
+/* --- Cleaned & Robust Info Tab Layout --- */
+
+#info-tab {
+    /* .content-tab already handles display:none — no conflict here */
+    opacity: 0;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
 #info-tab.visible {
     display: grid !important;
     opacity: 1;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding-top: 120px;
-    padding-bottom: 100px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    /* viewport-container has padding:40px top already.
+       Nav button is fixed at top:30px — 80px clears it cleanly */
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
-/* Force Reset Card Opacity for the Animation Loop */
-#info-tab .glass-card {
+/* ============================================================
+   Glass Card — Premium Layered Surface
+   ============================================================ */
+
+.glass-card {
+    position: relative;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0.015) 60%,
+        rgba(0, 255, 102, 0.015) 100%
+    );
+    backdrop-filter: blur(32px) saturate(200%) brightness(1.05);
+    -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.05);
+
+    /* Refined edge glow — top+left feel lit */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 20px;
+    padding: 36px 32px 34px;
+
+    /* Layered depth shadow */
+    box-shadow:
+        0 2px 0px rgba(255, 255, 255, 0.06) inset,       /* top inner sheen */
+        0 8px 32px rgba(0, 0, 0, 0.45),                   /* base depth */
+        0 24px 60px rgba(0, 0, 0, 0.3),                   /* ambient lift */
+        0 0 0 1px rgba(255, 255, 255, 0.03);              /* edge definition */
+
+    /* Start state for animation */
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(16px) scale(0.992);
+
+    transition:
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.4s ease;
+
+    overflow: hidden;
+    cursor: default;
 }
 
-/* Everytime the tab becomes visible, execute this animation cycle */
-#info-tab.visible .glass-card {
-    animation: smoothReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Noise texture overlay — premium glass feel */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 0;
 }
 
-/* Perfect Stagger Timing Loops */
-#info-tab.visible .glass-card:nth-child(1) { animation-delay: 0.05s; }
-#info-tab.visible .glass-card:nth-child(2) { animation-delay: 0.12s; }
-#info-tab.visible .glass-card:nth-child(3) { animation-delay: 0.19s; }
-#info-tab.visible .glass-card:nth-child(4) { animation-delay: 0.26s; }
-
-/* The Keyframe Engine */
-@keyframes smoothReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Accent glow sweep on hover */
+.glass-card::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -40%;
+    width: 120%;
+    height: 180%;
+    background: radial-gradient(
+        ellipse at 40% 30%,
+        rgba(0, 255, 102, 0.07) 0%,
+        transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
 }
 
-/* Hover Accent - Neon Green Edge Activation */
+.glass-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover State */
 .glass-card:hover {
-    border-color: rgba(0, 255, 102, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 255, 102, 0.04),
-                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 255, 102, 0.22);
+    border-top-color: rgba(0, 255, 102, 0.35);
+    border-left-color: rgba(0, 255, 102, 0.25);
+
+    box-shadow:
+        0 2px 0px rgba(0, 255, 102, 0.08) inset,
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 24px 70px rgba(0, 0, 0, 0.35),
+        0 0 40px rgba(0, 255, 102, 0.06),
+        0 0 0 1px rgba(0, 255, 102, 0.1);
+
+    transform: translateY(-4px) scale(1);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(0, 255, 102, 0.025) 100%
+    );
 }
 
-/* Typography Enhancements */
+.glass-card:hover::after {
+    opacity: 1;
+}
+
+/* ============================================================
+   Typography — Sharp, Premium, Intentional
+   ============================================================ */
+
 .glass-card h3 {
-    font-size: 1.15rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 18px;
-    
-    /* Subtle text gradient for the header titles */
-    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+    letter-spacing: 0.16em;
+    margin-bottom: 14px;
+
+    /* Bright-to-dim vertical fade — sharp SaaS look */
+    background: linear-gradient(
+        160deg,
+        #ffffff 0%,
+        rgba(0, 255, 102, 0.85) 45%,
+        rgba(255, 255, 255, 0.4) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* Optical micro-lift for small caps */
+    padding-bottom: 2px;
+}
+
+/* Divider under heading — accent line */
+.glass-card h3::after {
+    content: '';
+    display: block;
+    margin-top: 10px;
+    width: 28px;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(0, 255, 102, 0.7), transparent);
+    border-radius: 2px;
 }
 
 .glass-card p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.7;
-    letter-spacing: 0.01em;
+    font-family: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.8;
+    letter-spacing: 0.012em;
+    font-weight: 300;
+    font-optical-sizing: auto;
+
+    /* Subtle bottom fade for long text */
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 80%, rgba(0,0,0,0.7) 100%);
+    mask-image: linear-gradient(180deg, rgba(0,0,0,1) 80%, rgba(0,0,0,0.7) 100%);
 }
 
-/* Makes cards visible when Info tab is opened */
+/* ============================================================
+   Staggered Reveal Animation
+   ============================================================ */
+
+/* Each card: 1s duration. Stagger 0.38s apart.
+   Card 1 finishes @1.15s, card 4 finishes @2.29s — total ~2.5s cinematic window */
 #info-tab.visible .glass-card {
-    opacity: 1;
-    transform: translateY(0);
+    animation: smoothReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+#info-tab.visible .glass-card:nth-child(1) { animation-delay: 0.15s; }
+#info-tab.visible .glass-card:nth-child(2) { animation-delay: 0.38s; }
+#info-tab.visible .glass-card:nth-child(3) { animation-delay: 0.61s; }
+#info-tab.visible .glass-card:nth-child(4) { animation-delay: 0.84s; }
+#info-tab.visible .glass-card:nth-child(5) { animation-delay: 1.07s; }
+#info-tab.visible .glass-card:nth-child(6) { animation-delay: 1.30s; }
 
-/* Custom Dark Blue and Pale Black Liquid Movement for Info Tab */
-body:has(#info-tab.visible) .gradient-bg {
-    background: linear-gradient(125deg, #050508, #0033ff, #0a0a0f, #001155, #000000);
-    background-size: 400% 400%;
-    animation: blueLiquidMotion 12s ease infinite;
-    filter: contrast(1.1) brightness(0.7);
+@keyframes smoothReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(36px) scale(0.96);
+    }
+    /* Opacity comes up early so you SEE the card,
+       then watch it glide the remaining distance upward */
+    45% {
+        opacity: 0.65;
+        transform: translateY(12px) scale(0.985);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-@keyframes blueLiquidMotion {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* ============================================================
+   Premium Deep Midnight Theme — Living Flowing Background
+   IMPORTANT: .gradient-bg stays position:fixed — we only
+   change its background & animation, never position/z-index
+   ============================================================ */
+
+body.info-theme .gradient-bg {
+    /* Override the green liquid gradient with deep midnight */
+    background:
+        radial-gradient(ellipse 55% 45% at 18% 20%, rgba(10, 30, 110, 0.9) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 75% 75%, rgba(0, 70, 25, 0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 42% 38% at 82% 15%, rgba(0, 25, 90, 0.65) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 42% at 22% 80%, rgba(0, 90, 30, 0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 28% at 60% 40%, rgba(0, 255, 102, 0.05) 0%, transparent 55%),
+        #01030d;
+    background-size: 300% 300%, 280% 280%, 260% 260%, 300% 300%, 200% 200%, auto;
+    /* Override the liquidMotion animation with our deep midnight one */
+    animation: deepMidnightFlow 20s ease-in-out infinite alternate;
+    filter: contrast(1.1) brightness(0.78);
+    /* position, z-index, width, height — all untouched from base .gradient-bg */
+}
+
+@keyframes deepMidnightFlow {
+    0%   { background-position: 0% 0%,   100% 100%, 100% 0%,   0% 100%,  60% 40%, 0% 0%; }
+    25%  { background-position: 35% 20%,  60%  75%, 70%  30%,  30%  65%, 45% 55%, 0% 0%; }
+    50%  { background-position: 65% 50%,  30%  45%, 40%  65%,  70%  35%, 55% 45%, 0% 0%; }
+    75%  { background-position: 20% 80%,  75%  20%, 20%  80%,  80%  15%, 40% 60%, 0% 0%; }
+    100% { background-position: 0% 100%, 100%   0%, 100% 100%,  0%   0%, 60% 40%, 0% 0%; }
+}
+
+/* ============================================================
+   Accessibility — Reduced Motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .glass-card,
+    .glass-card::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    body.info-theme .gradient-bg {
+        animation: none !important;
+    }
+
+    #info-tab.visible .glass-card {
+        opacity: 1;
+        transform: none;
+    }
 }

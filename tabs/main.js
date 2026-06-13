@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 scene.classList.remove('visible');
             }
         });
-    }
-});
 
+        // Handle background theme toggle flawlessly
+        if (targetId === 'info-tab') {
+            document.body.classList.add('info-theme');
+        } else {
+            document.body.classList.remove('info-theme');
+        }
+    }
+}); // <-- THIS WAS MISSING AND BROKE YOUR WHOLE SITE
