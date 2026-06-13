@@ -330,3 +330,18 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+/* Custom Dark Blue and Pale Black Liquid Movement for Info Tab */
+body:has(#info-tab.visible) .gradient-bg {
+    background: linear-gradient(125deg, #050508, #0033ff, #0a0a0f, #001155, #000000);
+    background-size: 400% 400%;
+    animation: blueLiquidMotion 12s ease infinite;
+    filter: contrast(1.1) brightness(0.7);
+}
+
+@keyframes blueLiquidMotion {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
