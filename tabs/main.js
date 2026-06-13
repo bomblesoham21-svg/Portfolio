@@ -31,15 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function switchScene(targetId) {
-        const scenes = document.querySelectorAll('.hero-scene, .content-tab');
-        
-        scenes.forEach(scene => {
-            if (scene.id === targetId) {
-                scene.classList.add('visible');
-            } else {
-                scene.classList.remove('visible');
-            }
-        });
+    const scenes = document.querySelectorAll('.hero-scene, .content-tab');
+    
+    scenes.forEach(scene => {
+        if (scene.id === targetId) {
+            scene.classList.add('visible');
+        } else {
+            scene.classList.remove('visible');
+        }
+    });
+
+    // Handle background theme toggle flawlessly
+    if (targetId === 'info-tab') {
+        document.body.classList.add('info-theme');
+    } else {
+        document.body.classList.remove('info-theme');
     }
-});
+}
 
