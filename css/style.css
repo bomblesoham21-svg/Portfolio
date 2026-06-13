@@ -590,3 +590,105 @@ body.info-theme .gradient-bg {
         transform: none;
     }
 }
+
+/* --- Contact Tab 2-1-2 Layout --- */
+#contact-tab.visible {
+    display: flex !important;
+    justify-content: center; /* Centers the whole grid */
+    opacity: 1;
+    padding-top: 120px;
+    padding-bottom: 100px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-width: 700px;
+    width: 100%;
+}
+
+/* Forces the 3rd card (IG) into a single row, perfectly centered */
+.ig-card {
+    grid-column: span 2;
+    justify-self: center;
+    width: calc(50% - 12.5px); /* Matches the exact width of the other cards */
+}
+
+/* Mobile Responsiveness  */
+@media (max-width: 600px) {
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px; /* Tighter gap for mobile screens */
+    }
+    .ig-card {
+        width: 100%; /* Expands slightly so it doesn't look too tiny on phones */
+    }
+}
+
+/* --- Contact Card Specifics --- */
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 30px 15px;
+}
+
+/* Staggered Reveal Animation Setup for Contact Tab */
+#contact-tab.visible .contact-card {
+    animation: smoothReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#contact-tab.visible .contact-card:nth-child(1) { animation-delay: 0.05s; }
+#contact-tab.visible .contact-card:nth-child(2) { animation-delay: 0.12s; }
+#contact-tab.visible .contact-card:nth-child(3) { animation-delay: 0.19s; }
+#contact-tab.visible .contact-card:nth-child(4) { animation-delay: 0.26s; }
+#contact-tab.visible .contact-card:nth-child(5) { animation-delay: 0.33s; }
+
+/* Icons & Hover Interactivity */
+.contact-icon {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.15) translateY(-5px); /* Smooth lift effect */
+}
+
+/* Perfect Rounded Text Pills */
+.contact-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-pill {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 0, 85, 0.2);
+}
+
+/* --- Deep Pinkish Black SaaS Theme --- */
+body.contact-theme .gradient-bg {
+    background: linear-gradient(135deg, #050002, #b3003b, #000000, #4d001a, #0a0004);
+    background-size: 400% 400%;
+    animation: pinkLiquidMotion 14s ease infinite;
+    filter: contrast(1.2) brightness(0.7);
+}
+
+@keyframes pinkLiquidMotion {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
