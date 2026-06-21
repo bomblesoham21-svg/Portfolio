@@ -31,32 +31,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function switchScene(targetId) {
-        const scenes = document.querySelectorAll('.hero-scene, .content-tab');
+    const scenes = document.querySelectorAll('.hero-scene, .content-tab');
+    
+    // --> NEW: Pause any playing videos when switching main scenes
+    document.querySelectorAll('.work-video').forEach(video => {
+        video.pause();
+    });
+
+    scenes.forEach(scene => {
+        if (scene.id === targetId) {
+            scene.classList.add('visible');
+        } else {
+            scene.classList.remove('visible');
+        }
+    });
+
+    // Handle background theme toggle flawlessly
+    document.body.classList.remove('info-theme', 'contact-theme', 'work-images-theme', 'work-github-theme', 'work-videos-theme');
+
+    if (targetId === 'info-tab') {
+        document.body.classList.add('info-theme');
+    } else if (targetId === 'contact-tab') {
+        document.body.classList.add('contact-theme');
+    } else if (targetId === 'work-tab') {
+        // Default to images theme when Work tab is opened
+        document.body.classList.add('work-images-theme'); 
         
-        scenes.forEach(scene => {
-            if (scene.id === targetId) {
-                scene.classList.add('visible');
-            } else {
-                scene.classList.remove('visible');
-            }
-        });
-
-        // Handle background theme toggle flawlessly
-        document.body.classList.remove('info-theme', 'contact-theme', 'work-images-theme', 'work-github-theme', 'work-videos-theme');
-
-        if (targetId === 'info-tab') {
-            document.body.classList.add('info-theme');
-        } else if (targetId === 'contact-tab') {
-            document.body.classList.add('contact-theme');
-        } else if (targetId === 'work-tab') {
-            // Default to images theme when Work tab is opened
-            document.body.classList.add('work-images-theme'); 
-            
-            // Safe auto-reset: Only clicks if the button actually exists on screen
-            const defaultSubTab = document.querySelector('[data-target="images"]');
-            if (defaultSubTab) {
-                defaultSubTab.click();
-            }
+        // Safe auto-reset: Only clicks if the button actually exists on screen
+        const defaultSubTab = document.querySelector('[data-target="images"]');
+        if (defaultSubTab) {
+            defaultSubTab.click();
         }
     }
+}
 });
