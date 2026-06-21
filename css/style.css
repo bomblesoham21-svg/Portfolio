@@ -1103,3 +1103,46 @@ body.work-videos-theme .gradient-bg::after {
     pointer-events: none; 
 }
 
+
+/* =========================================
+   MEDIA VISIBILITY OVERRIDES (THE FIX)
+   ========================================= */
+
+/* 1. Force the cards to be visible when the section is active */
+.work-section.active .glass-card,
+.work-section.active .work-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* 2. Fix the flexbox collapse, force visibility, and push above the glass blur */
+.work-img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4/5; /* Gives the image a guaranteed physical block. Change to 1/1 for squares */
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    
+    /* The crucial visibility overrides */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    position: relative;
+    z-index: 10 !important; /* Forces it completely above the glass card background */
+}
+
+/* 3. Apply the exact same aggressive visibility rules to the videos */
+.work-video {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9; /* Standard video ratio */
+    border-radius: 12px;
+    
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    position: relative;
+    z-index: 10 !important;
+}
