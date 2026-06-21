@@ -1102,3 +1102,15 @@ body.work-videos-theme .gradient-bg::after {
     animation: goldenSparkles 20s linear infinite;
     pointer-events: none; 
 }
+
+.work-img,
+.work-video {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px !important;
+    position: relative !important;
+    z-index: 9999 !important;
+}
