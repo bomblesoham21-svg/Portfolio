@@ -43,9 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Handle background theme toggle flawlessly
         if (targetId === 'info-tab') {
+            document.body.classList.remove('contact-theme'); // Prevents style overlapping
             document.body.classList.add('info-theme');
+        } else if (targetId === 'contact-tab') {
+            document.body.classList.remove('info-theme');    // Prevents style overlapping
+            document.body.classList.add('contact-theme');
         } else {
-            document.body.classList.remove('info-theme');
+            // Clears all custom themes when going back to Home or other tabs
+            document.body.classList.remove('info-theme', 'contact-theme');
         }
     }
 }); // <-- THIS WAS MISSING AND BROKE YOUR WHOLE SITE
