@@ -52,7 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Default to images theme when Work tab is opened
             document.body.classList.add('work-images-theme'); 
             
-            // Auto-reset sub-nav to Images to prevent layout desync
-            document.querySelector('[data-target="images"]').click();
+            // Safe auto-reset: Only clicks if the button actually exists on screen
+            const defaultSubTab = document.querySelector('[data-target="images"]');
+            if (defaultSubTab) {
+                defaultSubTab.click();
+            }
         }
     }
+});
