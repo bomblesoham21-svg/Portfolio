@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     workBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            // --> NEW: Pause videos when switching sub-sections within the work tab
+            document.querySelectorAll('.work-video').forEach(video => {
+                video.pause();
+            });
+
             // 1. Remove active state from all sub-tabs
             workBtns.forEach(b => b.classList.remove('active'));
             workSections.forEach(s => s.classList.remove('active'));
@@ -19,4 +24,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
