@@ -42,15 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Handle background theme toggle flawlessly
+        document.body.classList.remove('info-theme', 'contact-theme', 'work-images-theme', 'work-github-theme', 'work-videos-theme');
+
         if (targetId === 'info-tab') {
-            document.body.classList.remove('contact-theme'); // Prevents style overlapping
             document.body.classList.add('info-theme');
         } else if (targetId === 'contact-tab') {
-            document.body.classList.remove('info-theme');    // Prevents style overlapping
             document.body.classList.add('contact-theme');
-        } else {
-            // Clears all custom themes when going back to Home or other tabs
-            document.body.classList.remove('info-theme', 'contact-theme');
+        } else if (targetId === 'work-tab') {
+            // Default to images theme when Work tab is opened
+            document.body.classList.add('work-images-theme'); 
+            
+            // Safe auto-reset: Only clicks if the button actually exists on screen
+            const defaultSubTab = document.querySelector('[data-target="images"]');
+            if (defaultSubTab) {
+                defaultSubTab.click();
+            }
         }
     }
-}); // <-- THIS WAS MISSING AND BROKE YOUR WHOLE SITE
+});
