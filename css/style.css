@@ -932,11 +932,13 @@ body.contact-theme .gradient-bg {
 .work-nav {
     display: flex;
     flex-wrap: nowrap;
-    gap: 4px;
+    /* Increased gap slightly for better spacing between medium items */
+    gap: 6px; 
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: 5px;
+    /* Increased padding from 5px to 6px to balanced the larger inner elements */
+    padding: 6px; 
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top-color: rgba(255, 255, 255, 0.2);
@@ -946,7 +948,8 @@ body.contact-theme .gradient-bg {
         0 0 0 1px rgba(255, 255, 255, 0.04);
     margin-bottom: 36px;
     width: max-content;
-    max-width: 98vw;
+    /* Safely prevents intersecting with screen edges on small devices */
+    max-width: 95vw; 
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -960,9 +963,11 @@ body.contact-theme .gradient-bg {
     background: transparent;
     border: none;
     color: rgba(255, 255, 255, 0.5);
-    padding: clamp(6px, 1.4vw, 10px) clamp(12px, 2.8vw, 24px);
+    /* INCREASED PADDING: Increased both mobile baseline and desktop maximums */
+    padding: clamp(8px, 1.6vw, 12px) clamp(16px, 3.2vw, 28px);
     border-radius: 40px;
-    font-size: clamp(0.66rem, 1.9vw, 0.84rem);
+    /* INCREASED FONT SIZE: Bumped up minimum from 0.66rem to 0.82rem, and max to 0.95rem */
+    font-size: clamp(0.82rem, 2vw, 0.95rem);
     font-weight: 600;
     letter-spacing: 0.04em;
     cursor: pointer;
