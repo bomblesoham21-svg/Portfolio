@@ -1593,3 +1593,57 @@ body.work-videos-theme .work-btn.active { background: rgba(255, 200, 80, 0.14); 
     }
     .work-section { animation: none !important; }
 }
+
+.icon-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.icon-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.08);
+}
+
+.icon-box {
+    position: absolute;
+    bottom: 36px;
+    right: 0;
+    width: 210px;
+    background: rgba(18, 18, 18, 0.9);
+    color: #eee;
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.icon-box.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
