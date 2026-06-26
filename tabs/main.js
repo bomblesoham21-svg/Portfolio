@@ -1,3 +1,9 @@
+document.querySelectorAll('.icon-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.nextElementSibling.classList.toggle('visible');
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.querySelector('.menu-btn');
     const dropdownMenu = document.querySelector('.dropdown-menu');

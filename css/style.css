@@ -931,11 +931,14 @@ body.contact-theme .gradient-bg {
 
 .work-nav {
     display: flex;
-    gap: 6px;
+    flex-wrap: nowrap;
+    /* Increased gap slightly for better spacing between medium items */
+    gap: 6px; 
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: 6px;
+    /* Increased padding from 5px to 6px to balanced the larger inner elements */
+    padding: 6px; 
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top-color: rgba(255, 255, 255, 0.2);
@@ -944,18 +947,32 @@ body.contact-theme .gradient-bg {
         0 8px 32px rgba(0, 0, 0, 0.5),
         0 0 0 1px rgba(255, 255, 255, 0.04);
     margin-bottom: 36px;
+    width: max-content;
+    /* Safely prevents intersecting with screen edges on small devices */
+    max-width: 95vw; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.work-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .work-btn {
     background: transparent;
     border: none;
     color: rgba(255, 255, 255, 0.5);
-    padding: 9px 22px;
+    /* INCREASED PADDING: Increased both mobile baseline and desktop maximums */
+    padding: clamp(8px, 1.6vw, 12px) clamp(16px, 3.2vw, 28px);
     border-radius: 40px;
-    font-size: 0.82rem;
+    /* INCREASED FONT SIZE: Bumped up minimum from 0.66rem to 0.82rem, and max to 0.95rem */
+    font-size: clamp(0.82rem, 2vw, 0.95rem);
     font-weight: 600;
     letter-spacing: 0.04em;
     cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
     transition:
         background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
         color 0.3s ease,
@@ -1006,29 +1023,32 @@ body.contact-theme .gradient-bg {
     position: relative;
     background: linear-gradient(
         145deg,
-        rgba(255, 255, 255, 0.055) 0%,
-        rgba(255, 255, 255, 0.02)  55%,
-        rgba(255, 255, 255, 0.01) 100%
+        rgba(255, 255, 255, 0.07)  0%,
+        rgba(255, 255, 255, 0.022) 50%,
+        rgba(255, 255, 255, 0.004) 100%
     );
-    backdrop-filter: blur(28px) saturate(200%) brightness(1.06);
-    -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.06);
+    backdrop-filter: blur(34px) saturate(200%) brightness(1.12);
+    -webkit-backdrop-filter: blur(34px) saturate(200%) brightness(1.12);
 
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-top: 1px solid rgba(255, 255, 255, 0.26);
-    border-left: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.42);
+    border-left: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 20px;
 
     box-shadow:
-        0 2px 0px rgba(255, 255, 255, 0.07) inset,
-        0 8px 28px rgba(0, 0, 0, 0.5),
-        0 20px 55px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.04);
+        0 1px 0px  rgba(255, 255, 255, 0.5)  inset,
+        0 2px 6px  rgba(255, 255, 255, 0.08) inset,
+        0 -1px 0px rgba(255, 255, 255, 0.05) inset,
+        0 8px 24px rgba(0, 0, 0, 0.55),
+        0 24px 60px rgba(0, 0, 0, 0.32),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
 
     overflow: hidden;
     transition:
         border-color  0.4s ease,
         box-shadow    0.4s ease,
-        transform     0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        transform     0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background    0.4s ease;
     cursor: pointer;
 }
 
@@ -1047,14 +1067,23 @@ body.contact-theme .gradient-bg {
 .work-card > * { position: relative; z-index: 1; }
 
 .work-card:hover {
-    border-top-color: rgba(255, 255, 255, 0.38);
-    border-left-color: rgba(255, 255, 255, 0.22);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.11)  0%,
+        rgba(255, 255, 255, 0.035) 50%,
+        rgba(255, 255, 255, 0.008) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.62);
+    border-left-color: rgba(255, 255, 255, 0.34);
     box-shadow:
-        0 2px 0px rgba(255, 255, 255, 0.1) inset,
+        0 1px 0px  rgba(255, 255, 255, 0.65) inset,
+        0 2px 8px  rgba(255, 255, 255, 0.12) inset,
+        0 -1px 0px rgba(255, 255, 255, 0.07) inset,
         0 10px 36px rgba(0, 0, 0, 0.55),
-        0 24px 64px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.08);
-    transform: translateY(-3px);
+        0 28px 70px rgba(0, 0, 0, 0.35),
+        0 0 50px rgba(255, 255, 255, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.14);
+    transform: translateY(-4px);
 }
 
 .work-card:active {
@@ -1121,18 +1150,32 @@ body.contact-theme .gradient-bg {
 
 /* Text pill under each image */
 .work-title-glass {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-top-color: rgba(255, 255, 255, 0.22);
-    padding: 8px 12px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.78rem;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    font-size: 0.74rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.16);
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.09) 0%,
+        rgba(255, 255, 255, 0.03) 100%
+    );
+    backdrop-filter: blur(16px) saturate(190%) brightness(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(190%) brightness(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.48);
+    border-left: 1px solid rgba(255, 255, 255, 0.26);
+    padding: 8px 18px;
+    border-radius: 50px;
+    box-shadow:
+        0 1px 0   rgba(255, 255, 255, 0.5)  inset,
+        0 2px 6px rgba(255, 255, 255, 0.08) inset,
+        0 4px 14px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 /* ============================================================
@@ -1288,27 +1331,27 @@ body.contact-theme .gradient-bg {
 
 body.work-images-theme .gradient-bg {
     background:
-        radial-gradient(ellipse 58% 50% at 20% 18%, rgba(0, 80, 45, 0.85)  0%, transparent 65%),
-        radial-gradient(ellipse 44% 40% at 78% 76%, rgba(0, 55, 30, 0.65)  0%, transparent 62%),
-        radial-gradient(ellipse 40% 36% at 75% 12%, rgba(0, 40, 22, 0.55)  0%, transparent 60%),
-        radial-gradient(ellipse 50% 44% at 18% 82%, rgba(0, 30, 16, 0.5)   0%, transparent 60%),
-        radial-gradient(ellipse 28% 24% at 55% 48%, rgba(0, 200, 80, 0.04) 0%, transparent 55%),
-        #000b05;
-    background-size: 300% 300%, 280% 280%, 260% 260%, 300% 300%, 200% 200%, auto;
-    animation: greenOrbA 22s ease-in-out infinite alternate;
-    filter: contrast(1.15) brightness(0.72);
+        radial-gradient(ellipse 70% 60% at 22% 20%, rgba(0, 200, 90, 0.95)  0%, transparent 68%),
+        radial-gradient(ellipse 58% 50% at 78% 75%, rgba(0, 160, 70, 0.85)  0%, transparent 65%),
+        radial-gradient(ellipse 50% 44% at 72% 14%, rgba(0, 140, 60, 0.7)   0%, transparent 62%),
+        radial-gradient(ellipse 60% 52% at 18% 82%, rgba(0, 110, 48, 0.65)  0%, transparent 62%),
+        radial-gradient(ellipse 45% 38% at 50% 50%, rgba(20, 230, 110, 0.18) 0%, transparent 60%),
+        #00200d;
+    background-size: 280% 280%, 260% 260%, 240% 240%, 280% 280%, 200% 200%, auto;
+    animation: greenOrbA 20s ease-in-out infinite alternate;
+    filter: contrast(1.05) brightness(0.98) saturate(1.2);
 }
 
-/* Second orb layer via pseudo-element, offset phase */
 body.work-images-theme .gradient-bg::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 42% 38% at 82% 30%, rgba(0, 100, 50, 0.4) 0%, transparent 60%),
-        radial-gradient(ellipse 35% 30% at 25% 65%, rgba(0, 60, 28, 0.35) 0%, transparent 58%);
-    background-size: 260% 260%, 240% 240%;
-    animation: greenOrbB 18s ease-in-out infinite alternate;
+        radial-gradient(ellipse 55% 48% at 80% 30%, rgba(0, 210, 95, 0.65) 0%, transparent 62%),
+        radial-gradient(ellipse 46% 40% at 22% 65%, rgba(0, 170, 70, 0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 36% 30% at 55% 80%, rgba(0, 120, 50, 0.45) 0%, transparent 58%);
+    background-size: 240% 240%, 220% 220%, 200% 200%;
+    animation: greenOrbB 16s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
@@ -1321,26 +1364,62 @@ body.work-images-theme .glass-card,
 body.work-images-theme .work-card {
     background: linear-gradient(
         145deg,
-        rgba(255, 255, 255, 0.055) 0%,
-        rgba(255, 255, 255, 0.02) 55%,
-        rgba(0, 200, 80, 0.015) 100%
+        rgba(255, 255, 255, 0.1)  0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(0, 230, 100, 0.018) 100%
     ) !important;
+    border-top-color: rgba(255, 255, 255, 0.5) !important;
+    border-left-color: rgba(255, 255, 255, 0.26) !important;
     box-shadow:
-        0 2px 0px rgba(255, 255, 255, 0.07) inset,
+        0 1px 0px  rgba(255, 255, 255, 0.55) inset,
+        0 2px 8px  rgba(180, 255, 210, 0.1)  inset,
+        0 -1px 0px rgba(255, 255, 255, 0.06) inset,
         0 8px 28px rgba(0, 0, 0, 0.55),
-        0 20px 55px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+        0 24px 60px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.07) !important;
 }
 
 body.work-images-theme .glass-card:hover,
 body.work-images-theme .work-card:hover {
-    border-top-color: rgba(0, 255, 120, 0.35) !important;
-    border-left-color: rgba(0, 255, 120, 0.18) !important;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.14)  0%,
+        rgba(255, 255, 255, 0.045) 50%,
+        rgba(0, 230, 100, 0.03)   100%
+    ) !important;
+    border-top-color: rgba(0, 255, 130, 0.75) !important;
+    border-left-color: rgba(0, 255, 130, 0.42) !important;
     box-shadow:
-        0 2px 0px rgba(0, 255, 100, 0.08) inset,
+        0 1px 0px  rgba(220, 255, 235, 0.6) inset,
+        0 2px 10px rgba(0, 255, 140, 0.16)  inset,
         0 10px 36px rgba(0, 0, 0, 0.55),
-        0 0 40px rgba(0, 180, 80, 0.07),
-        0 0 0 1px rgba(0, 255, 100, 0.1) !important;
+        0 0 70px rgba(0, 220, 90, 0.18),
+        0 0 0 1px rgba(0, 255, 100, 0.18) !important;
+}
+
+.work-card::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -60%;
+    width: 60%;
+    height: 220%;
+    background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.18) 45%,
+        rgba(255, 255, 255, 0.32) 50%,
+        rgba(255, 255, 255, 0.18) 55%,
+        transparent 100%
+    );
+    transform: rotate(8deg);
+    pointer-events: none;
+    z-index: 2;
+    transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-card:hover::after {
+    left: 120%;
 }
 
 body.work-images-theme .work-title-glass { color: rgba(255, 255, 255, 0.75); }
@@ -1383,12 +1462,38 @@ body.work-github-theme .glass-card,
 body.work-github-theme .work-card {
     background: linear-gradient(
         145deg,
-        rgba(255, 255, 255, 0.06) 0%,
-        rgba(255, 255, 255, 0.022) 55%,
-        rgba(255, 255, 255, 0.01) 100%
+        rgba(255, 255, 255, 0.1)  0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.006) 100%
     ) !important;
+    border-top-color: rgba(255, 255, 255, 0.46) !important;
+    border-left-color: rgba(255, 255, 255, 0.24) !important;
+    box-shadow:
+        0 1px 0px  rgba(255, 255, 255, 0.5)  inset,
+        0 2px 8px  rgba(255, 255, 255, 0.08) inset,
+        0 -1px 0px rgba(255, 255, 255, 0.05) inset,
+        0 8px 28px rgba(0, 0, 0, 0.6),
+        0 24px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.06) !important;
 }
 
+body.work-github-theme .glass-card:hover,
+body.work-github-theme .work-card:hover {
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.14)  0%,
+        rgba(255, 255, 255, 0.045) 50%,
+        rgba(255, 255, 255, 0.01)  100%
+    ) !important;
+    border-top-color: rgba(255, 255, 255, 0.78) !important;
+    border-left-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow:
+        0 1px 0px  rgba(255, 255, 255, 0.55) inset,
+        0 2px 10px rgba(255, 255, 255, 0.12) inset,
+        0 10px 36px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(255, 255, 255, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.16) !important;
+}
 body.work-github-theme .work-nav { background: rgba(0, 0, 0, 0.6); border-color: rgba(255, 255, 255, 0.08); }
 body.work-github-theme .work-btn { color: rgba(255, 255, 255, 0.45); }
 body.work-github-theme .work-btn.active { background: rgba(255, 255, 255, 0.12); color: #fff; }
@@ -1401,15 +1506,15 @@ body.work-github-theme .work-btn.active { background: rgba(255, 255, 255, 0.12);
 
 body.work-videos-theme .gradient-bg {
     background:
-        radial-gradient(ellipse 55% 48% at 18% 20%, rgba(120, 70, 0, 0.8)  0%, transparent 65%),
-        radial-gradient(ellipse 42% 38% at 78% 75%, rgba(80,  40, 0, 0.65) 0%, transparent 62%),
-        radial-gradient(ellipse 38% 32% at 72% 15%, rgba(100, 55, 0, 0.5)  0%, transparent 60%),
-        radial-gradient(ellipse 48% 42% at 20% 80%, rgba(60,  30, 0, 0.45) 0%, transparent 60%),
-        #0e0800;
-    background-size: 300% 300%, 280% 280%, 260% 260%, 300% 300%, auto;
-    animation: goldOrbA 22s ease-in-out infinite alternate;
-    /* Pulled down significantly — was too bright, killed glass contrast */
-    filter: contrast(1.1) brightness(0.55);
+        radial-gradient(ellipse 60% 52% at 20% 22%, rgba(255, 205, 40, 0.95) 0%, transparent 64%),
+        radial-gradient(ellipse 48% 44% at 78% 74%, rgba(255, 180, 20, 0.85) 0%, transparent 62%),
+        radial-gradient(ellipse 42% 36% at 74% 16%, rgba(255, 225, 110, 0.7) 0%, transparent 60%),
+        radial-gradient(ellipse 52% 46% at 18% 80%, rgba(235, 165, 10, 0.65) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 26% at 50% 50%, rgba(255, 235, 150, 0.12) 0%, transparent 55%),
+        #120c00;
+    background-size: 300% 300%, 280% 280%, 260% 260%, 300% 300%, 200% 200%, auto;
+    animation: goldOrbA 20s ease-in-out infinite alternate;
+    filter: contrast(1.02) brightness(0.85) saturate(1.45);
 }
 
 /* Sparkle particles — retained from original, tuned size */
@@ -1437,22 +1542,37 @@ body.work-videos-theme .glass-card,
 body.work-videos-theme .work-card {
     background: linear-gradient(
         145deg,
-        rgba(255, 255, 255, 0.07) 0%,
-        rgba(255, 200, 80, 0.025) 55%,
-        rgba(255, 200, 80, 0.01) 100%
+        rgba(255, 255, 255, 0.1)  0%,
+        rgba(255, 225, 90, 0.04)  50%,
+        rgba(255, 225, 90, 0.012) 100%
     ) !important;
-    border-top-color: rgba(255, 220, 130, 0.25) !important;
-    border-left-color: rgba(255, 220, 130, 0.14) !important;
+    border-top-color: rgba(255, 235, 150, 0.5) !important;
+    border-left-color: rgba(255, 235, 150, 0.26) !important;
+    box-shadow:
+        0 1px 0px  rgba(255, 240, 190, 0.55) inset,
+        0 2px 8px  rgba(255, 220, 100, 0.12) inset,
+        0 -1px 0px rgba(255, 255, 255, 0.05) inset,
+        0 8px 28px rgba(0, 0, 0, 0.55),
+        0 24px 60px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 215, 60, 0.1) !important;
 }
 
 body.work-videos-theme .glass-card:hover,
 body.work-videos-theme .work-card:hover {
-    border-top-color: rgba(255, 220, 100, 0.4) !important;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.14)  0%,
+        rgba(255, 225, 90, 0.07)  50%,
+        rgba(255, 225, 90, 0.02)  100%
+    ) !important;
+    border-top-color: rgba(255, 235, 130, 0.85) !important;
+    border-left-color: rgba(255, 235, 130, 0.5) !important;
     box-shadow:
-        0 2px 0px rgba(255, 200, 80, 0.1) inset,
+        0 1px 0px  rgba(255, 245, 200, 0.6) inset,
+        0 2px 10px rgba(255, 220, 90, 0.18) inset,
         0 10px 36px rgba(0, 0, 0, 0.55),
-        0 0 40px rgba(200, 140, 0, 0.08),
-        0 0 0 1px rgba(255, 200, 80, 0.1) !important;
+        0 0 70px rgba(255, 200, 60, 0.2),
+        0 0 0 1px rgba(255, 215, 60, 0.18) !important;
 }
 
 body.work-videos-theme .work-nav { background: rgba(0, 0, 0, 0.55); border-color: rgba(255, 200, 80, 0.12); }
@@ -1472,4 +1592,75 @@ body.work-videos-theme .work-btn.active { background: rgba(255, 200, 80, 0.14); 
         transition: none !important;
     }
     .work-section { animation: none !important; }
+}
+
+
+.icon-wrapper {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 999;
+}
+
+.icon-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.06);
+    color: #e8e8e8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: scale(1.1);
+}
+
+.icon-box {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 220px;
+    max-width: 220px;
+    background: rgba(12, 12, 16, 0.88);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+
+    background-image: linear-gradient(135deg, #f5f5f5, #b8b8bc 50%, #e2e2e6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.icon-box.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
