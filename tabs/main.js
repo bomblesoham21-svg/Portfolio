@@ -1,4 +1,4 @@
-document.querySelectorAll('.info-btn').forEach(btn => {
+document.querySelectorAll('.icon-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         btn.nextElementSibling.classList.toggle('visible');
     });
